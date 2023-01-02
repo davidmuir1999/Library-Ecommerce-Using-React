@@ -1,11 +1,23 @@
-import LandingPage from "./components/LandingPage";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Books from "./Pages/Books";
+import { books } from "./data.js"
+import BookInfo from "./Pages/BookInfo";
+
 function App() {
   return (
-    <div className="App">
-      <Nav/>
-      <LandingPage/>
-    </div>
+    <Router>
+      <div className="App">
+        <Nav />
+        <Route path="/" exact component={Home}/>
+        <Route path="/books" exact render={() => <Books books={books}/>}/>
+        <Route path="/books/1" render={() => <BookInfo books={books}/>}/>
+        <Footer />
+      </div>
+    </Router>
+
   );
 }
 
